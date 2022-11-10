@@ -21,12 +21,12 @@ function verifyJWT(req, res, next) {
         req.status(401).send({ message: "unAuthorized Access" })
     }
     const token = authHeader.split(' ')[1]
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, function(err, decoded){
-        if(err){
-            res.status(403).send({message: "unAuthorized Access"})
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, function (err, decoded) {
+        if (err) {
+            res.status(403).send({ message: "unAuthorized Access" })
         }
         req.decoded = decoded;
-        next(); 
+        next();
     })
 
     console.log()
@@ -45,9 +45,6 @@ async function run() {
             res.send({ token })
             console.log(user)
         })
-
-
-
 
         app.post('/users', async (req, res) => {
             const user = req.body
@@ -76,7 +73,7 @@ async function run() {
             res.send(service)
         })
         // review api  
-        // for services id and review data load 
+        // for services_id and review data load 
         app.get('/review/:id', async (req, res) => {
 
             const id = req.params.id;
@@ -88,11 +85,11 @@ async function run() {
 
         // for email
         app.get('/reviews', verifyJWT, async (req, res) => {
-            const decoded =req.decoded
+            const decoded = req.decoded
             console.log('inside order api ', decoded)
 
-            if(decoded.email !== req.query.email){
-                res.status(403).send({message: "unauthorized Access"})
+            if (decoded.email !== req.query.email) {
+                res.status(403).send({ message: "unauthorized Access" })
             }
 
             console.log(req.headers.authorization)
