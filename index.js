@@ -30,13 +30,13 @@ async function run() {
         app.get('/services', async (req, res) => {
             const query = {}
             const cursor = serviceCollection.find()
-            const services = await cursor.sort({createdAt:-1}).toArray();
+            const services = await cursor.sort({ createdAt: -1 }).toArray();
             res.send(services);
         })
         app.get('/servicesthree', async (req, res) => {
             const query = {}
             const cursor = serviceCollection.find()
-            const services = await cursor.limit(3).sort({createdAt:-1}).toArray();
+            const services = await cursor.limit(3).sort({ createdAt: -1 }).toArray();
             res.send(services);
         })
         app.get('/services/:id', async (req, res) => {
@@ -52,7 +52,7 @@ async function run() {
             const id = req.params.id;
             const query = { service: id }
             const cursor = reviewCollection.find(query).sort({ date: -1 });
-            const reviews = await cursor.sort({createdAt:-1}).toArray();
+            const reviews = await cursor.sort({ createdAt: -1 }).toArray();
             res.send(reviews)
         })
 
@@ -66,7 +66,7 @@ async function run() {
                 }
             }
             const cursor = reviewCollection.find(query);
-            const reviews = await cursor.sort({createdAt:-1}).toArray();
+            const reviews = await cursor.sort({ createdAt: -1 }).toArray();
             res.send(reviews)
         })
         app.post('/reviews', async (req, res) => {
@@ -111,7 +111,7 @@ async function run() {
 run().catch(err => console.log(err))
 
 app.get('/', (req, res) => {
-    res.send('simple Node server is running')
+    res.send(' Node server is running')
 })
 app.listen(port, () => {
     console.log(`somple site is running on port ${port}`)
