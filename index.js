@@ -114,5 +114,5 @@ app.get('/', (req, res) => {
     res.send(' Node server is running')
 })
 app.listen(port, () => {
-    console.log(`somple site is running on port ${port}`)
+    console.log(`simple site is running on port ${port}`)
 })
